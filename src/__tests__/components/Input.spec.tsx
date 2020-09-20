@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent, wait } from '@testing-library/react';
+import 'jest-styled-components';
 
 import Input from '../../components/Input';
 
@@ -36,15 +37,15 @@ describe('Input component', () => {
     fireEvent.focus(inputElement);
 
     await wait(() => {
-      expect(containerElement).toHaveStyle('border-color: #ff9000;');
-      expect(containerElement).toHaveStyle('color: #ff9000;');
+      expect(containerElement).toHaveStyleRule('border-color', '#ff9000');
+      expect(containerElement).toHaveStyleRule('color', '#ff9000');
     });
 
     fireEvent.blur(inputElement);
 
     await wait(() => {
-      expect(containerElement).not.toHaveStyle('border-color: #ff9000;');
-      expect(containerElement).not.toHaveStyle('color: #ff9000;');
+      expect(containerElement).not.toHaveStyleRule('border-color', '#ff9000');
+      expect(containerElement).not.toHaveStyleRule('color', '#ff9000');
     });
   });
 
@@ -63,7 +64,7 @@ describe('Input component', () => {
     fireEvent.blur(inputElement);
 
     await wait(() => {
-      expect(containerElement).toHaveStyle('color: #ff9000;');
+      expect(containerElement).toHaveStyleRule('color', '#ff9000');
     });
   });
 
